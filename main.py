@@ -57,6 +57,8 @@ async def text(ctx, lang='en'):
     attachment = ctx.message.attachments[0]
     text = parse_image(attachment, lang)
     await ctx.send(text)
+  except IndexError: 
+    await ctx.send(f'Error! I see no image..')
   except Exception as e:
     await ctx.send(f'Error! ${e}')
 
