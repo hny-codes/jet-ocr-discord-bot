@@ -8,7 +8,7 @@ class ImageReader():
   def get_text(self):
     """ Grabs text off the image and returns the text and accuracy of the model """
     result = self.reader.readtext(self.image, detail=1)
-    output = ''
+    output = '```'
     accuracy = 0
 
     for i in range(len(result)):
@@ -19,6 +19,6 @@ class ImageReader():
     accuracy = round(accuracy / len(result), 2) * 100
 
     # Concat accuracy to end of results
-    output += f'\n\n __Accuracy:__ **{accuracy}**%'
+    output += f'```\n __Accuracy:__ **{accuracy}**%'
 
     return output
