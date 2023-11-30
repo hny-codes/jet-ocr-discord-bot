@@ -2,6 +2,8 @@
 import os
 import discord
 import logging
+import importlib
+from image_util import parse_image
 from os.path import join, dirname
 from dotenv import load_dotenv
 from discord.ext import commands
@@ -26,10 +28,18 @@ async def on_ready():
   print(f'Logged in as {bot.user.name}')
   print(f'Login ID: {str(bot.user.id)}')
 
-@bot.event
+@bot.command()
 async def hello(ctx):
   """ Basic command that says hi back """
   await ctx.send('Hi!')
 
+@bot.command()
+async def text(ctx, lang='en'):
+  try:
+    attachment = ctx.message.attachments[0]
+    text = parse_image(attachment, lang)
+    await ctx.send(text)
+  except Exception as e:
+    await ctx.send(f'Error! ${e}')
 
 bot.run(os.getenv('DISCORD_TOKEN'))
