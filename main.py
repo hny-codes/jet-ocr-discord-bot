@@ -27,6 +27,7 @@ bot = commands.Bot(command_prefix='$', description=bot_desc, intents=intents)
 async def on_ready():
   print(f'Logged in as {bot.user.name}')
   print(f'Login ID: {str(bot.user.id)}')
+  await bot.change_presence(activity=discord.Game('$help for more'))
 
 @bot.command()
 async def hello(ctx):
