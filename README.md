@@ -15,3 +15,4 @@ In order to extract text correct, you **must** have an image attachment alongsid
 ## References
 - [Discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
 - [EasyOCR](https://github.com/JaidedAI/EasyOCR)
+- [Python Exception Hierarchy](https://docs.python.org/3/library/exceptions.html#exception-hierarchy)
