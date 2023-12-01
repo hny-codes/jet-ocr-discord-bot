@@ -54,12 +54,23 @@ async def help(ctx):
 async def text(ctx, lang='en'):
   """ Takes in an image and returns text """
   try:
+    # Throw an error if there are no attachments
+    if(len(ctx.message.attachments) == 0):
+      raise IndexError('I see no image..')
+
+    # Throw an error if user attaches more than 1 image
+    if(len(ctx.message.attachments) > 1):
+      raise IndexError('I can only read one image!')
+    
     attachment = ctx.message.attachments[0]
+    message = await ctx.send('**Got image!** Extracting..')
+
+    # Extract text from image, with specified language
     text = parse_image(attachment, lang)
-    await ctx.send(text)
-  except IndexError: 
-    await ctx.send(f'Error! I see no image..')
+    await message.edit(content=text)
+  except IndexError as e: 
+    await ctx.send(f'Error! {e}')
   except Exception as e:
-    await ctx.send(f'Error! ${e}')
+    await ctx.send(f'Error! {e}')
 
 bot.run(os.getenv('DISCORD_TOKEN'))
