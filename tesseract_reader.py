@@ -15,11 +15,11 @@ class TesseractReader:
 
     def parse_image(self, image):
         try:
-            tessdata_dir_config = r'-l eng+jpn --tessdata-dir "/home/tachi/Desktop/langs/tessdata"'
+            tessdata_dir_config = r'--tessdata-dir "/home/tachi/Desktop/langs/tessdata"'
             print("Parsing via pytesseract")
 
             return pytesseract.image_to_string(
-                image=image, timeout=120, config=tessdata_dir_config
+                image=image, timeout=120, config=tessdata_dir_config, lang='eng+jpn'
             )
 
         except RuntimeError as e:
