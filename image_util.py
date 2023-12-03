@@ -23,6 +23,8 @@ def parse_image(img):
     image = Image.open(io.BytesIO(response.content))
     print("Image: ", image)
 
+    # Creates a TesseractReader object and send image to be parsed
     reader = TesseractReader()
     text = f"```{reader.parse_image(image)}```"
-    return text
+     
+    return text if text != f"``````" else '```No text available```'
