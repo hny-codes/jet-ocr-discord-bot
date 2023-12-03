@@ -1,6 +1,7 @@
 import requests
 import io
 from ocr_reader import ImageReader
+from tesseract_reader import TesseractReader
 try:
   from PIL import Image
 except ImportError:
@@ -17,9 +18,9 @@ def get_image(url):
 def parse_image(img, lang):
   """ Grabs the text of a given image and returns it """
   response = requests.get(img)
+  image = Image.open(io.BytesIO(response.content))
+  print('Image: ', image)
 
-  # Get image content and accuracy
-  # lang = english default
-  reader = ImageReader(response.content, lang)
-  text = reader.get_text()
+  reader = TesseractReader()
+  text = f'```{reader.parse_image(image)}```'
   return text
