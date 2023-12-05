@@ -33,7 +33,7 @@ class TesseractReader:
             self.psm = 3
             return "CatchAll"
 
-    def parse_image(self, image):
+    def parse_image(self, image, lang):
         try:
             text = ""
 
@@ -42,12 +42,13 @@ class TesseractReader:
             # Get language of image
             language = self.get_language(image)
             print("Language: ", language, "\n")
+            print("User Language: ", lang)
 
             tessdata_dir_config = (
                 f'--tessdata-dir "/home/tachi/Desktop/langs/tessdata" --psm {self.psm}'
             )
 
-            if language == "Japanese" or language == "Katakana":
+            if (language == "Japanese" or language == "Katakana" or language == "Han") or (lang == 'jpn'):
                 text = pytesseract.image_to_string(
                     image=image, timeout=120, config=tessdata_dir_config, lang="jpn"
                 )

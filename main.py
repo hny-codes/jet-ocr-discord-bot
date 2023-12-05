@@ -56,7 +56,7 @@ async def help(ctx):
 
 
 @bot.command()
-async def text(ctx):
+async def text(ctx, lang='eng'):
     """Takes in an image and returns text"""
     try:
         # Throw an error if there are no attachments
@@ -71,7 +71,7 @@ async def text(ctx):
         message = await ctx.send("**Got image!** Extracting..")
 
         # Extract text from image, with specified language
-        text = parse_image(attachment)
+        text = parse_image(attachment, lang)
         await message.edit(content=text)
 
     except IndexError as e:

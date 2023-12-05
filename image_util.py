@@ -17,7 +17,7 @@ def get_image(url):
     return image
 
 
-def parse_image(img):
+def parse_image(img, lang):
     """Grabs the text of a given image and returns it"""
     response = requests.get(img)
     image = Image.open(io.BytesIO(response.content))
@@ -25,6 +25,6 @@ def parse_image(img):
 
     # Creates a TesseractReader object and send image to be parsed
     reader = TesseractReader()
-    text = f"```{reader.parse_image(image)}```"
+    text = f"```{reader.parse_image(image, lang)}```"
      
     return text if text != f"``````" else '```No text available```'
