@@ -8,7 +8,7 @@ import requests
 import io
 
 response = requests.get(
-    "https://cdn.discordapp.com/attachments/939674781823959091/1180663574616616960/screenshot2.png?ex=657e3da3&is=656bc8a3&hm=484e6115ad18581cde0f365682646556aa5c2794cb829e2833bc76df0bbf66bc&"
+    "https://cdn.discordapp.com/attachments/622593706998104107/1181382688964362301/Screenshot_2023-11-29_194102.png?ex=6580db5e&is=656e665e&hm=5781cfd69977b9755f946992ef38b61f6d6ed9d1c8dc80a5d642679c22087b7a&"
 )
 print("Response: ", response)
 
@@ -18,8 +18,21 @@ print("Image: ", image)
 
 tessdata_dir_config = r'--tessdata-dir "/home/tachi/Desktop/langs/tessdata"'
 
-text = pytesseract.image_to_string(
-    image=image, timeout=120, config=tessdata_dir_config, lang="jpn"
+# text = pytesseract.image_to_string(
+#     image=image, timeout=120, config=tessdata_dir_config, lang="eng+jpn"
+# )
+
+# Get language about picture
+info = pytesseract.image_to_osd(image=image)
+language = info.split("\n")[-3].split()[1]
+
+print(language)
+
+# Return OCR text based on language
+text = (
+    pytesseract.image_to_string(image=image, config=tessdata_dir_config, lang="jpn")
+    if language == "Japanese"
+    else pytesseract.image_to_string(image=image, config=tessdata_dir_config)
 )
 
 print(text)
