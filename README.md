@@ -1,4 +1,6 @@
-# Jet - OCR Discord Bot
+# Jet - OCR Discord Bot (Archived - EasyOCR Version)
+
+*December 6, 2023 - This version has been archived as it no longer suited my needs.*
 
 Found yourself in quick need to extract text from an image in Discord? Meet Jet, a discord bot that aims to extract text from any image attachment you feed it!
 
