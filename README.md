@@ -6,6 +6,8 @@ Found yourself in quick need to extract text from an image in Discord? Meet Jet,
 
 Powered by [Python-tesseract](https://pypi.org/project/pytesseract/)
 
+**See blog post here:** [Jet - OCR Funsies on Discord](https://hny-blogs.vercel.app/posts/jet-discord-ocr)
+
 ## Table of Contents
 
 - [Purpose](#purpose)
